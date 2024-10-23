@@ -1,0 +1,31 @@
+[tool.poetry]
+name = "image-analyst-rknn-models"
+version = "1.0.0"
+description = "The models of the ImageAnalyst RKNN extension."
+authors = ["Lucas Berg <55436804+BergLucas@users.noreply.github.com>"]
+repository = "https://github.com/BergLucas/ImageAnalystRKNN-models"
+keywords = ["image", "analysis", "rknn"]
+readme = "README.md"
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+]
+packages = [{ include = "image_analyst_rknn_builder.py", from = "src" }]
+
+[tool.poetry.dependencies]
+python = "^3.9"
+rknn_toolkit2 = [
+    { url = "https://raw.githubusercontent.com/airockchip/rknn-toolkit2/7efa763d1da04c4c4447fa5632dc2d9c94fb3063/rknn-toolkit2/packages/rknn_toolkit2-2.2.0-cp37-cp37m-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", python = "~3.7", platform = "linux" },
+    { url = "https://raw.githubusercontent.com/airockchip/rknn-toolkit2/7efa763d1da04c4c4447fa5632dc2d9c94fb3063/rknn-toolkit2/packages/rknn_toolkit2-2.2.0-cp38-cp38-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", python = "~3.8", platform = "linux" },
+    { url = "https://raw.githubusercontent.com/airockchip/rknn-toolkit2/7efa763d1da04c4c4447fa5632dc2d9c94fb3063/rknn-toolkit2/packages/rknn_toolkit2-2.2.0-cp39-cp39-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", python = "~3.9", platform = "linux" },
+    { url = "https://raw.githubusercontent.com/airockchip/rknn-toolkit2/7efa763d1da04c4c4447fa5632dc2d9c94fb3063/rknn-toolkit2/packages/rknn_toolkit2-2.2.0-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", python = "~3.10", platform = "linux" },
+    { url = "https://raw.githubusercontent.com/airockchip/rknn-toolkit2/7efa763d1da04c4c4447fa5632dc2d9c94fb3063/rknn-toolkit2/packages/rknn_toolkit2-2.2.0-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", python = "~3.11", platform = "linux" },
+    { url = "https://raw.githubusercontent.com/airockchip/rknn-toolkit2/7efa763d1da04c4c4447fa5632dc2d9c94fb3063/rknn-toolkit2/packages/rknn_toolkit2-2.2.0-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", python = "~3.12", platform = "linux" },
+]
+requests = "^2.32.3"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
