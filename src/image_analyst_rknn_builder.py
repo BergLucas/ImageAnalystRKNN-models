@@ -4,9 +4,13 @@ import os
 
 WEIGHTS_URL = "https://github.com/BergLucas/ImageAnalystCV2-models/releases/download/v1.0.0/cv2-yolov3-coco.weights"
 CONFIG_URL = "https://github.com/BergLucas/ImageAnalystCV2-models/releases/download/v1.0.0/cv2-yolov3-coco.cfg"
+TINY_WEIGHTS_URL = "https://github.com/BergLucas/ImageAnalystCV2-models/releases/download/v1.0.0/cv2-yolov3-tiny-coco.weights"
+TINY_CONFIG_URL = "https://github.com/BergLucas/ImageAnalystCV2-models/releases/download/v1.0.0/cv2-yolov3-tiny-coco.cfg"
 
 DARKNET_NAME = "cv2-yolov3-coco"
 RKNN_NAME = "rknn-yolov3-coco"
+TINY_DARKNET_NAME = "cv2-yolov3-tiny-coco"
+TINY_RKNN_NAME = "rknn-yolov3-tiny-coco"
 
 def download(url: str, filename: str) -> str:
     filepath = os.path.join(os.getcwd(), filename)
@@ -15,9 +19,11 @@ def download(url: str, filename: str) -> str:
     return filepath
 
 
-def main():
-    weights_path = download(WEIGHTS_URL, f"{DARKNET_NAME}.weights")
-    config_path = download(CONFIG_URL, f"{DARKNET_NAME}.cfg")
+def build(weights_url: str, config_url: str, darknet_name: str, rknn_name: str):
+    weights_path = download(weights_url, f"{darknet_name}.weights")
+    config_path = download(config_url, f"{darknet_name}.cfg")
+
+    print(f"Converting model {darknet_name} to {rknn_name}")
 
     rknn = RKNN(verbose=True)
 
@@ -43,13 +49,18 @@ def main():
 
     print("Build model done")
 
-    return_code = rknn.export_rknn(f"{RKNN_NAME}.rknn")
+    return_code = rknn.export_rknn(f"{rknn_name}.rknn")
 
     if return_code != 0:
         print("Export rknn model failed!")
         exit(return_code)
 
     print("Export rknn model done")
+
+
+def main():
+    build(WEIGHTS_URL, CONFIG_URL, DARKNET_NAME, RKNN_NAME)
+    build(TINY_WEIGHTS_URL, TINY_CONFIG_URL, TINY_DARKNET_NAME, TINY_RKNN_NAME)
 
 
 if __name__ == "__main__":
